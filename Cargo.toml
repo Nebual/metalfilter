@@ -1,0 +1,16 @@
+[package]
+name = "metalfilter"
+version = "0.1.0"
+authors = ["Ben Allison <ben1120@gmail.com>"]
+
+[dependencies]
+image = "*"
+lerp = "0.2"
+iron = { version = "0.5.1", optional = true }
+router = { version = "*", optional = true }
+
+[features]
+webserver = ["iron", "router"]
+
+[profile.release]
+#lto = true
