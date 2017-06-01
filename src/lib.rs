@@ -18,8 +18,8 @@ pub enum PixelFilters {
 }
 
 
-pub fn apply_filter(input_name: &str, filter: PixelFilters, option: f32) -> image::DynamicImage {
-    let mut img = image::open(&Path::new(input_name)).unwrap();
+pub fn apply_filter(input_name: &str, filter: PixelFilters, option: f32) -> Result<image::DynamicImage, image::ImageError> {
+    let mut img = image::open(&Path::new(input_name))?;
 
     for pixel in img.as_mut_rgb8().unwrap().pixels_mut() {
         match filter {
@@ -44,7 +44,7 @@ pub fn apply_filter(input_name: &str, filter: PixelFilters, option: f32) -> imag
             }
         }
     }
-    return img;
+    return Ok(img);
 }
 
 pub fn save_to_jpg_file(img : image::DynamicImage, name : &str) {
